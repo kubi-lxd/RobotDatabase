@@ -58,7 +58,7 @@ class Sensors(EmbeddedDocument):
         "Radar",
     )
     type = StringField(required=True, choices=sensor_choice)
-    Sensor = ListField(GenericEmbeddedDocumentField, required=True)
+    sensor = ListField(GenericEmbeddedDocumentField, required=True)
     meta = {"collection": "Sensors"}
 
 
@@ -211,7 +211,7 @@ class Demonstration(Document):
     length = IntField(default=0)  # 每插入一次数据加1
     sensor_num = IntField(required=True)
     sensors_type_list = ListField(StringField(max_length=10), required=True, primary_key=False)  # 准备插入的传感器类型列表
-    Sensors = ListField(EmbeddedDocumentField('Sensors'), required=True)
+    sensors = ListField(EmbeddedDocumentField('Sensors'), required=True)
     human = ListField(GenericEmbeddedDocumentField('Human'), required=True)
     control = ListField(GenericEmbeddedDocumentField('Control'), required=True)
     control_model = GenericEmbeddedDocumentField('ControlModel')
